@@ -4,9 +4,10 @@
   "description": "Assignment submission web system",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node buildScripts/server.js",
-    "prestart": "node buildScripts/startMessage.js"
+    "prestart": "babel-node buildScripts/startMessage.js",
+    "start": "babel-node buildScripts/server.js",
+    "localtunnel": " lt --port 4000 --s project--o",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
