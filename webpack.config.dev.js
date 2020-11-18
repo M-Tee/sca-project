@@ -10,7 +10,7 @@ export default {
     path.resolve(__dirname, 'src/index')
   ],
   target: 'web',
-  //path to bunled file, saved in memory
+  //path to bundled file, saved in memory
   output: {
     path: path.resolve(__dirname, 'src'),
     publicPath: '/',
@@ -19,9 +19,8 @@ export default {
   plugins: [],
   module: {
     rules: [
-      {
-        test: /\.js$/, exclude: /node_modules/, loader: ['babel-loader'] }
-      // { test: /\.js$/, loader: ['style-loader', 'css-loader']}
+      { test: /\.js$/, exclude: /node_modules/, loader: ['babel-loader'] },
+      { test: /\.css$/, loader: ['style-loader', 'css-loader'] }
     ]
   }
 }
