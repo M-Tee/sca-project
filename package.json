@@ -2,14 +2,14 @@
   "name": "assign",
   "version": "1.0.0",
   "description": "Assignment submission web system",
-  "main": "server.js",
+  "main": "server.mjs",
   "scripts": {
-    "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel dev lint",
-    "dev": "nodemon babel-node buildScripts/server.js ",
+    "prestart": "babel buildScripts/startMessage.js",
+    "start": "npm-run-all --parallel dev lint test",
+    "dev": "nodemon babel buildScripts/server.mjs ",
     "lint": "esw webpack.config.* src buildScripts --color --watch",
     "localtunnel": " lt --port 4000 --s project--o",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\" --watch"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "@babel/core": "7.11.4",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "7.11.0",
-    "@babel/register": "7.10.5",
+    "@babel/register": "^7.10.5",
     "babel-loader": "8.1.0",
     "chai": "4.2.0",
     "chalk": "4.1.0",
