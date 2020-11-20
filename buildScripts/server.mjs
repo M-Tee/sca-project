@@ -2,14 +2,19 @@ import express from 'express';
 import path from 'path';
 import open from 'open';
 import webpack from 'webpack';
-import config from '../webpack.config.dev';
+import config from '../webpack.config.dev.mjs';
+import WebpackDevMiddleware from 'webpack-dev-middleware';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
 
 /*eslint-disable no-console*/
 const app = express();
 const port = 4000;
 const compiler = webpack(config);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-app.use(require('webpack-dev-middleware')(compiler, {
+app.use(WebpackDevMiddleware(compiler, {
   // noInfo: true,
   publicPath: config.output.publicPath
 }));
