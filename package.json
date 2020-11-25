@@ -4,7 +4,6 @@
   "description": "Assignment submission web system",
   "main": "server.mjs",
   "scripts": {
-    "prestart": "babel buildScripts/startMessage.js",
     "start": "npm-run-all --parallel dev lint test",
     "dev": "nodemon babel buildScripts/server.mjs ",
     "lint": "esw webpack.config.* src buildScripts --color --watch",
@@ -21,7 +20,9 @@
     "url": "https://github.com/M-Tee/sca-project/issues"
   },
   "homepage": "https://github.com/M-Tee/sca-project#readme",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.19.0"
+  },
   "devDependencies": {
     "@babel/cli": "7.10.5",
     "@babel/core": "7.11.4",
