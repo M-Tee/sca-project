@@ -1,3 +1,4 @@
+import {} from 'dotenv/config.js';
 import express from 'express';
 import path, { dirname } from 'path';
 import open from 'open';
@@ -7,15 +8,26 @@ import WebpackDevMiddleware from 'webpack-dev-middleware';
 import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
 import userRoutes from '../src/Routes/userRoutes.mjs';
+import mongoose from 'mongoose';
 
 /*eslint-disable no-console*/
 const app = express();
 const port = 4000;
 const compiler = webpack(config);
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const mongoUri = process.env.URI;
+const options = { useNewUrlParser: true, useUnifiedTopology: true,};
 
+//Connecting to mongoDB, Passing the URI and Options
+await mongoose.connect(mongoUri, options, (err, res) => {
+  if(err){
+    return console.log(err);
+  }
+  return console.log('Connected to MongoDB');
+});
+
+//Setup webpack
 app.use(WebpackDevMiddleware(compiler, {
-  // noInfo: true,
   publicPath: config.output.publicPath
 }));
 app.use(bodyParser.urlencoded({ extended: true }))
