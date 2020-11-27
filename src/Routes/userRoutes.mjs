@@ -4,6 +4,6 @@ import controller from '../Controllers/userController.mjs'
 const router = express.Router();
 
 router.route('/signup')
-  .post(controller.addUser);
+  .post(controller.createUser);
 
 export default router;
