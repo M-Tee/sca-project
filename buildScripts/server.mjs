@@ -7,7 +7,7 @@ import config from '../webpack.config.dev.mjs';
 import WebpackDevMiddleware from 'webpack-dev-middleware';
 import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
-import userRoutes from '../src/Routes/userRoutes.mjs';
+import userRoutes from '../src/Routes/userR.mjs';
 import mongoose from 'mongoose';
 
 /*eslint-disable no-console*/
@@ -15,11 +15,12 @@ const app = express();
 const port = 4000;
 const compiler = webpack(config);
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const mongoUri = process.env.URI;
-const options = { useNewUrlParser: true, useUnifiedTopology: true,};
+// const mongoUri = process.env.URI;
+const db = process.env.DB;
+const options = { useNewUrlParser: true, useUnifiedTopology: true, ssl: false,};
 
 //Connecting to mongoDB, Passing the URI and Options
-await mongoose.connect(mongoUri, options, (err, res) => {
+await mongoose.connect(db, options, (err) => {
   if(err){
     return console.log(err);
   }
