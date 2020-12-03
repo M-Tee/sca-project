@@ -27,6 +27,9 @@ const userSchema = new Schema(
     regNo: {
       type: String,
       required: true
+    },
+    token: {
+      type: String
     }
   }
 );
