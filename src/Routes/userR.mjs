@@ -1,12 +1,15 @@
 import express from 'express';
-import controller from '../Controllers/userC.mjs'
+import ctrl from '../Controllers/userC.mjs'
 
 const router = express.Router();
 
 router.route('/users')
-  .get(controller.getUsers);
+  .get(ctrl.getUsers);
 
 router.route('/signup')
-  .post(controller.createUser);
+  .post(ctrl.createUser);
+
+router.route('/login')
+  .post(ctrl.login);
 
 export default router;
