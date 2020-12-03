@@ -23,6 +23,7 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.16"
   },
   "devDependencies": {
