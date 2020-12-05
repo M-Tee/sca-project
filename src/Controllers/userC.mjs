@@ -30,7 +30,6 @@ async function login(req, res) {
       }
 
       const match = await passwordAuth(req.body.password, user.password);
-
       if (match) {
         return user;
       };
