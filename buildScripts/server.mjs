@@ -8,6 +8,7 @@ import WebpackDevMiddleware from 'webpack-dev-middleware';
 import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
 import userRoutes from '../src/Routes/userR.mjs';
+import assignRoutes from '../src/Routes/assignmentR.mjs';
 import mongoose from 'mongoose';
 
 /*eslint-disable no-console*/
@@ -34,6 +35,7 @@ app.use(WebpackDevMiddleware(compiler, {
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(userRoutes);
+app.use(assignRoutes);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../src/index.html'));
