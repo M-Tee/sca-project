@@ -1,5 +1,5 @@
 import express from 'express';
-import ctrl from '../Controllers/assignmentC.mjs';
+import ctrl from '../Controllers/assignment.C.mjs';
 
 const router = express.Router();
 

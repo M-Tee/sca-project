@@ -1,4 +1,4 @@
-import Assignment from '../Model/assignmentM.mjs';
+import Assignment from '../Model/assignment.M.mjs';
 
 async function upload(req, res) {
   try {

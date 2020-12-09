@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import hashing from './preUserM.mjs'; //import the plugin
+import hashing from './preUser.M.mjs'; //import the plugin
 
 const { Schema } = mongoose;
 

@@ -1,4 +1,4 @@
-import User from '../Model/userM.mjs';
+import User from '../Model/user.M.mjs';
 import { passwordAuth, generateToken } from '../Middleware/auth.mjs';
 // import bcrypt from 'bcrypt';
 
@@ -57,4 +57,9 @@ async function getUsers(req, res) {
   });
 };
 
-export default { createUser, getUsers, login };
+//Delete users logic
+async function delUser(req, res){
+  await User.find({email: req.body.email})
+};
+
+export default { createUser, getUsers, login, delUser };
