@@ -7,9 +7,10 @@ import config from '../webpack.config.dev.mjs';
 import WebpackDevMiddleware from 'webpack-dev-middleware';
 import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
-import userRoutes from '../src/Routes/userR.mjs';
-import assignRoutes from '../src/Routes/assignmentR.mjs';
+import userRoutes from '../src/Routes/user.R.mjs';
+import assignRoutes from '../src/Routes/assignment.R.mjs';
 import mongoose from 'mongoose';
+import flash from 'express-flash';
 
 /*eslint-disable no-console*/
 const app = express();
@@ -33,7 +34,7 @@ app.use(WebpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 }));
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use(userRoutes);
 app.use(assignRoutes);
 
