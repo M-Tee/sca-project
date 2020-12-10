@@ -4,10 +4,16 @@ const { Schema } = mongoose;
 
 const assignSchema = new Schema(
   {
+    regNo: {
+      type: String
+    },
     file: {
       type: Schema.Types.Mixed,
       required: true,
       path: 'file'
+    },
+    date: {
+      type: Date 
     }
   }
 ); 
