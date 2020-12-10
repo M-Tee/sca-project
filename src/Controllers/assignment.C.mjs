@@ -2,18 +2,77 @@ import Assignment from '../Model/assignment.M.mjs';
 
 async function upload(req, res) {
   try {
-    const assignmnt = new Assignment(req.body);
-    await assignmnt.save();
-    return res.json(assignmnt);
+    if(!req.files) {
+      res.send({ status: false, message: 'No file uploaded' });
+    }
+      //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
+      // let file = req.files.file;
+      const assignmnt = new Assignment(req.files);
+      
+      //Use the mv() method to place the file in upload directory (i.e. "uploads")
+      // avatar.mv('./uploads/' + avatar.name);
+
+      //send response
+      // res.send({
+      //     status: true,
+      //     message: 'File is uploaded',
+      //     data: {
+      //         name: avatar.name,
+      //         mimetype: avatar.mimetype,
+      //         size: avatar.size
+      //     }
+      // });
+
+      await assignmnt.save();
+      res.send({
+            status: true,
+            message: 'File is uploaded',
+            data: assignmnt.file.name
+        });
+    
+  
   } catch (err) {
+    res.status(500).send(err);
     console.log(err);
    };
 };
+
 async function getfiles(req, res) {
   try {
-
-  } catch (err) {console.log(err)};
-
+    await Assignment.find((err, files) => {
+      if (err) {
+        return res.sendStatus(404);
+      }
+      // return  res.download('./${file.name}');
+      return res.sendFile(files);
+    });
+  } catch (err) {
+    res.send(err);
+    console.log(err)
+  };
 }
 
-export default { upload };
+function getListFiles(req, res) {
+  const directoryPath = __basedir + "/resources/static/assets/uploads/";
+
+  fs.readdir(directoryPath, function (err, files) {
+    if (err) {
+      res.status(500).send({
+        message: "Unable to scan files!",
+      });
+    }
+
+    let fileInfos = [];
+
+    files.forEach((file) => {
+      fileInfos.push({
+        name: file,
+        url: baseUrl + file,
+      });
+    });
+
+    res.status(200).send(fileInfos);
+  });
+};
+
+export default { upload, getfiles, getListFiles};
