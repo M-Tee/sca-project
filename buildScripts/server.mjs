@@ -11,6 +11,7 @@ import userRoutes from '../src/Routes/user.R.mjs';
 import assignRoutes from '../src/Routes/assignment.R.mjs';
 import mongoose from 'mongoose';
 import flash from 'express-flash';
+import fileUpload from 'express-fileupload';
 
 /*eslint-disable no-console*/
 const app = express();
@@ -30,9 +31,10 @@ await mongoose.connect(db, options, (err) => {
 });
 
 //Setup webpack
-app.use(WebpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath
-}));
+app.use(WebpackDevMiddleware(compiler, { publicPath: config.output.publicPath }));
+
+// enable files upload
+app.use(fileUpload({ createParentPath: true }));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(userRoutes);
