@@ -12,6 +12,7 @@ import assignRoutes from '../src/Routes/assignment.R.mjs';
 import mongoose from 'mongoose';
 import flash from 'express-flash';
 import fileUpload from 'express-fileupload';
+import cors from 'cors';
 
 /*eslint-disable no-console*/
 const app = express();
@@ -37,6 +38,7 @@ app.use(WebpackDevMiddleware(compiler, { publicPath: config.output.publicPath })
 app.use(fileUpload({ createParentPath: true }));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
+app.use(cors);
 app.use(userRoutes);
 app.use(assignRoutes);
 
