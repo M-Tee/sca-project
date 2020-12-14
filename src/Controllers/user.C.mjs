@@ -58,8 +58,15 @@ async function getUsers(req, res) {
 };
 
 //Delete users logic
-async function delUser(req, res){
-  await User.find({email: req.body.email})
+async function delUser(req, res) {
+  try {
+    await User.findById(req.params.userId, (user) => {
+      user.remove();
+      return res.sendStatus(204);
+    });
+  } catch (err) {
+    res.status(500).send(err);
+  };
 };
 
 export default { createUser, getUsers, login, delUser };
