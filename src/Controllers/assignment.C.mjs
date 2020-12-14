@@ -1,5 +1,5 @@
 import Assignment from '../Model/assignment.M.mjs';
-
+import uploadFile from '../Middleware/upload.mjs';
 // async function upload(req, res) {
 //   try {
 //     if(!req.files) {
@@ -39,6 +39,7 @@ import Assignment from '../Model/assignment.M.mjs';
 
 async function upload(req, res) {
   try {
+    console.log("Uploading...")
     if (!req.files) {
       res.send({ status: false, message: 'No file uploaded' });
     }
@@ -88,4 +89,4 @@ function getListFiles(req, res) {
   });
 };
 
-export default { upload, getfiles, getListFiles};
+export default { upload, getfiles, getListFiles };
