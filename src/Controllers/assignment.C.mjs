@@ -1,56 +1,56 @@
 import Assignment from '../Model/assignment.M.mjs';
-import uploadFile from '../Middleware/upload.mjs';
-// async function upload(req, res) {
-//   try {
-//     if(!req.files) {
-//       res.send({ status: false, message: 'No file uploaded' });
-//     }
-//       //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
-//       // let file = req.files.file;
-//       const assignmnt = new Assignment(req.files);
-      
-//       //Use the mv() method to place the file in upload directory (i.e. "uploads")
-//       // avatar.mv('./uploads/' + avatar.name);
-
-//       //send response
-//       // res.send({
-//       //     status: true,
-//       //     message: 'File is uploaded',
-//       //     data: {
-//       //         name: avatar.name,
-//       //         mimetype: avatar.mimetype,
-//       //         size: avatar.size
-//       //     }
-//       // });
-
-//       await assignmnt.save();
-//       res.send({
-//             status: true,
-//             message: 'File is uploaded',
-//             data: assignmnt.file.name
-//         });
-    
-  
-//   } catch (err) {
-//     res.status(500).send(err);
-//     console.log(err);
-//    };
-// };
 
 async function upload(req, res) {
   try {
-    console.log("Uploading...")
-    if (!req.files) {
+    if(!req.files) {
       res.send({ status: false, message: 'No file uploaded' });
     }
-    await uploadFile(req, res);
-    res.status(200).send("Uploaded the file successfully: " + req.file.originalname);
+      //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
+      // let file = req.files.file;
+      const assignmnt = new Assignment(req.files);
+      
+      //Use the mv() method to place the file in upload directory (i.e. "uploads")
+      // avatar.mv('./uploads/' + avatar.name);
 
+      //send response
+      // res.send({
+      //     status: true,
+      //     message: 'File is uploaded',
+      //     data: {
+      //         name: avatar.name,
+      //         mimetype: avatar.mimetype,
+      //         size: avatar.size
+      //     }
+      // });
+
+      await assignmnt.save();
+      res.send({
+            status: true,
+            message: 'File is uploaded',
+            data: assignmnt.file.name
+        });
+    
+  
   } catch (err) {
     res.status(500).send(err);
-    console.log(`Could not upload the file: ${req.file.originalname}. ${err}`);
-  };
+    console.log(err);
+   };
 };
+
+// async function upload(req, res) {
+//   try {
+//     console.log("Uploading...")
+//     if (!req.files) {
+//       res.send({ status: false, message: 'No file uploaded' });
+//     }
+//     await uploadFile(req, res);
+//     res.status(200).send("Uploaded the file successfully: " + req.file.originalname);
+
+//   } catch (err) {
+//     res.status(500).send(err);
+//     console.log(`Could not upload the file: ${req.file.originalname}. ${err}`);
+//   };
+// };
 async function getfiles(req, res) {
   try {
     await Assignment.find((err, files) => {
