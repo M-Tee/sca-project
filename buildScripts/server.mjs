@@ -42,10 +42,9 @@ mongoose.connection.on('error', err => console.log(err));
 
 morgan('tiny');
 //Setup webpack
-app.use(WebpackDevMiddleware(compiler, { publicPath: config.output.publicPath }));
-
-// enable files upload
-app.use(fileUpload({ createParentPath: true }));
+app.use(WebpackDevMiddleware(compiler, {
+  publicPath: config.output.publicPath
+}));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(cors);
