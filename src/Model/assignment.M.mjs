@@ -4,15 +4,16 @@ const { Schema } = mongoose;
 
 const assignSchema = new Schema(
   {
-    uploaded_by: { //students name and regno
+    regNo: {
       type: String
     },
     file: {
       type: Schema.Types.Mixed,
       required: true,
+      path: 'file'
     },
-    uploaded_at: {
-      type: Date
+    date: {
+      type: Date 
     }
   }
 ); 

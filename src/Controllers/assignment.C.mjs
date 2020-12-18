@@ -89,4 +89,4 @@ function getListFiles(req, res) {
   });
 };
 
-export default { upload, getfiles, getListFiles };
+export default { upload, getfiles, getListFiles};

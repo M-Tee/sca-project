@@ -8,7 +8,7 @@ router.route('/users')
   .get(ctrl.getUsers);
 
 router.route('/delete')
-  .delete(ctrl.delUser);
+.delete(ctrl.delUser);
 
 
 //student route
